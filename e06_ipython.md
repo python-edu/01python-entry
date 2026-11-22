@@ -18,7 +18,7 @@ Open two terminal sessions, preferably as **tabs** in one window:
 Use these names throughout the tutorial:
 
 - **IPython terminal** — run IPython and solve tasks.
-- **History terminal** — save files and use Git.
+- **Archive terminal** — save course work and use Git.
 
 In the **IPython terminal**, open `proj1` and activate its environment.
 
@@ -26,7 +26,7 @@ In the **IPython terminal**, open `proj1` and activate its environment.
 
 ```powershell
 cd ~/python_course/projects/proj1
-.\env\Scripts\activate
+~/python_course/projects/proj1/env/Scripts/activate
 ipython
 ```
 
@@ -34,7 +34,7 @@ ipython
 
 ```bash
 cd ~/python_course/projects/proj1
-source env/bin/activate
+source ~/python_course/projects/proj1/env/bin/activate
 ipython
 ```
 
@@ -73,7 +73,7 @@ Out[9]: 3.8
 
 ## Document and select history
 
-- Start each task with `# project/task — title`.
+- Start each task with `# lab2/taskNN — title`.
 - Use `#` comments to describe calculations and results.
 - Enter expressions to display their values.
 - Save only the inputs belonging to the task.
@@ -123,7 +123,7 @@ $$
 $$
 
 ```ipython
-In [21]: # proj1/task01 — classification accuracy
+In [21]: # lab2/task01 — classification accuracy
 In [22]: reference_points = 180
 In [23]: correct_points = 163
 In [24]: # Incorrect classifications
@@ -158,7 +158,7 @@ $$
 $$
 
 ```ipython
-In [31]: # proj1/task02 — ground sampling distance
+In [31]: # lab2/task02 — ground sampling distance
 In [32]: focal_length_mm = 35
 In [33]: pixel_size_um = 3.45
 In [34]: # Convert pixel size from µm to mm
@@ -179,95 +179,102 @@ Input numbers are examples. Use the numbers from your own IPython session.
 
 ---
 
-## Create the history repository
+## Archive your work
 
-- Keep projects in `projects/`.
-- Use **one Git repository**: `ipython-history/`.
-- Create **one directory per project**.
-- Keep **two files per project**: `history.txt` and `answers.txt`.
-- Overwrite these files for each new task. Git stores their earlier versions.
+- `projects/` — Python projects and their environments.
+- `student-work/` — your Git repository for **all course tasks**.
+- `lab1/`, `lab2/`, ... — course topics, not Python projects.
+- `results.txt` — text results from IPython, terminal or other tools.
+- Overwrite `results.txt` for each new task. Git keeps earlier versions.
+- Add other files when required by the task.
 
 ```text
 ~/python_course/
 ├── projects/
 │   ├── proj1/
-│   ├── ...
-│   └── proj_n/
-└── ipython-history/              # Git repository
-    ├── proj1/
-    │   ├── history.txt           # student's work
-    │   └── answers.txt           # instructor's answers
-    ├── ...
-    └── proj_n/
-        ├── history.txt
-        └── answers.txt
+│   ├── proj2/
+│   └── ...
+└── student-work/                  # Git repository
+    ├── lab1/
+    │   ├── results.txt
+    │   └── answers.txt
+    ├── lab2/
+    │   ├── results.txt
+    │   ├── answers.txt
+    │   ├── requirements.txt
+    │   └── requirements_frozen.txt
+    └── ...
 ```
 
 ### 1. Initialize Git
 
-Keep IPython open in the **IPython terminal**. In the **History terminal**:
+Keep IPython open in the **IPython terminal**. In the **Archive terminal**:
 
 ```bash
-cd ~/python_course
-mkdir ipython-history
-cd ipython-history
+mkdir ~/python_course/student-work
+mkdir ~/python_course/student-work/lab2
+cd ~/python_course/student-work
 git init
-mkdir proj1
 ```
+
+Git paths such as `lab2/results.txt` are relative to `~/python_course/student-work`.
 
 ### 2. Archive Task 01
 
-In the **IPython terminal**, export only Task 01 (`21-30`) to `proj1/history.txt`:
+In the **IPython terminal**, export Task 01 (`21-30`) to `lab2/results.txt`:
 
 ```ipython
-%history -n -o -y -f ../../ipython-history/proj1/history.txt 21-30
+%history -n -o -y -f ~/python_course/student-work/lab2/results.txt 21-30
 # or
-%hist -n -o -y -f ../../ipython-history/proj1/history.txt 21-30
+%hist -n -o -y -f ~/python_course/student-work/lab2/results.txt 21-30
 ```
 
-In the **History terminal**, inspect and commit the file. Identify the project and task in the message:
+In the **Archive terminal**, inspect and commit the file. Include the lab and task in the message:
 
 ```bash
+cd ~/python_course/student-work
 git status
-git add proj1/history.txt
-git commit -m "proj1/task01: classification accuracy"
+git add lab2/results.txt
+git commit -m "lab2/task01: classification accuracy"
 # or
-git commit --message "proj1/task01: classification accuracy"
+git commit --message "lab2/task01: classification accuracy"
 ```
 
 Use **one** of the two commit commands.
 
 ### 3. Archive Task 02
 
-In the **IPython terminal**, export Task 02 (`31-43`) to the **same file**. Its previous contents are replaced:
+In the **IPython terminal**, export Task 02 (`31-43`) to the **same file**. It replaces Task 01:
 
 ```ipython
-%history -n -o -y -f ../../ipython-history/proj1/history.txt 31-43
+%history -n -o -y -f ~/python_course/student-work/lab2/results.txt 31-43
 # or
-%hist -n -o -y -f ../../ipython-history/proj1/history.txt 31-43
+%hist -n -o -y -f ~/python_course/student-work/lab2/results.txt 31-43
 ```
 
-In the **History terminal**, commit the new version:
+In the **Archive terminal**, commit the new version:
 
 ```bash
+cd ~/python_course/student-work
 git status
-git add proj1/history.txt
-git commit -m "proj1/task02: ground sampling distance"
+git add lab2/results.txt
+git commit -m "lab2/task02: ground sampling distance"
 # or
-git commit --message "proj1/task02: ground sampling distance"
+git commit --message "lab2/task02: ground sampling distance"
 ```
 
 ### 4. Archive instructor's answers
 
-- If the instructor provides an answer file, save it as `proj1/answers.txt`.
-- Replace the file for the next task.
-- In the **History terminal**, commit each version. Include the task number in the message.
+- If the instructor provides an answer file, save it as `~/python_course/student-work/lab2/answers.txt`.
+- Replace this file for each new task.
+- In the **Archive terminal**, commit the file. Include the task number.
 
 ```bash
-git add proj1/answers.txt
-git commit -m "proj1/task01: answers"
+cd ~/python_course/student-work
+git add lab2/answers.txt
+git commit -m "lab2/task01: answers"
 # or
-git commit --message "proj1/task01: answers"
+git commit --message "lab2/task01: answers"
 ```
 
 Keep the repository **private**. Do not publish the instructor's answers.
@@ -278,42 +285,49 @@ Keep the repository **private**. Do not publish the instructor's answers.
 
 ### 1. Show a task on screen
 
-In the **History terminal**, `git log` lists all commits, newest first:
+In the **Archive terminal**, `git log` lists all commits, newest first:
 
 ```bash
+cd ~/python_course/student-work
 git log
 ```
 
 - `--oneline` — show short commit IDs and commit messages.
 - `--` — separate Git options from file paths. It is **not an option**.
-- `proj1/history.txt` — show only commits affecting this file, not all commits.
+- `lab2/results.txt` — show only commits affecting this file, not all commits.
 
 ```bash
+cd ~/python_course/student-work
 git log --oneline
 # or
-git log --oneline -- proj1/history.txt
+git log --oneline -- lab2/results.txt
 ```
 
 Find the task by its commit message. Display the saved history:
 
 ```bash
-git show COMMIT_ID:proj1/history.txt
+cd ~/python_course/student-work
+git show COMMIT_ID:lab2/results.txt
 ```
 
-For the instructor's answers, use `proj1/answers.txt` instead.
+For the instructor's answers, use `COMMIT_ID:lab2/answers.txt` instead.
+
+   >- In `git show`, the path after `:` belongs to the commit.
+   >- It is not a system path; do not use `~/` there.
 
 ### 2. Generate a report file
 
-In the **History terminal**, export the selected task to a **temporary text file outside the repository**:
+In the **Archive terminal**, export the selected task to a **temporary text file outside the repository**:
 
 ```bash
-git show COMMIT_ID:proj1/history.txt > ../proj1_task01_history.txt
+cd ~/python_course/student-work
+git show COMMIT_ID:lab2/results.txt > ~/python_course/lab2_task01_results.txt
 ```
 
-Send `proj1_task01_history.txt` to the instructor. Then delete the temporary file:
+Send `~/python_course/lab2_task01_results.txt` to the instructor. Then delete the temporary file:
 
 ```bash
-rm ../proj1_task01_history.txt
+rm ~/python_course/lab2_task01_results.txt
 ```
 
 No additional report is required.
