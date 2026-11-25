@@ -31,6 +31,12 @@
 5. [pip](docs/e05_pip.md) — install packages in a project environment.
 6. [IPython](docs/e06_ipython.md) — use an enhanced interactive shell.
 
+
+# 2. Learning materials
+[Learning materials](https://github.com/python-edu/python-language/blob/main/README.md) - operators,
+variables, data types, built-in functions, data structures, conditional statements, loops, and control flow.
+
+
 # 2. Modules and code quality
 
 7. [Modules and packages](docs/e07_modules.md) — create `geometry.py` and a package.
