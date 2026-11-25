@@ -37,19 +37,19 @@
 variables, data types, built-in functions, data structures, conditional statements, loops, and control flow.
 
 
-# 2. Modules and code quality
+# 3. Modules and code quality
 
 7. [Modules and packages](docs/e07_modules.md) — create `geometry.py` and a package.
 8. [Importing](docs/e08_importing.md) — use standard and custom modules.
 9. [pipx](docs/e09_pipx.md) — install Python command-line applications.
 10. [Ruff](docs/e10_ruff.md) — check and format Python code.
 
-# 3. Scripts
+# 4. Scripts
 
 11. [Python scripts](docs/e11_scripts.md) — run Python code from files.
 12. [Script arguments](docs/e12_script_arguments.md) — pass arguments from the terminal.
 
-# 4. Jupyter
+# 5. Jupyter
 
 13. [Jupyter](docs/e13_jupyter.md) — install JupyterLab, create kernels, and run notebooks.
 
