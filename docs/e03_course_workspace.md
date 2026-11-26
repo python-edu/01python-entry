@@ -7,9 +7,15 @@ Course files belong under `python_course` in the **home directory** (`~`).
 ├── projects/               # independent projects
 │   └── proj1/              # first project (created next)
 ├── data/                   # shared input data
-└── jupyter_work/
-    ├── notebooks/          # notebooks outside projects
-    └── envs/               # shared Jupyter environments
+├── jupyter_work/
+│   ├── notebooks/          # notebooks outside projects
+│   └── envs/               # shared Jupyter environments
+└── student-work/                  # Git repository
+    ├── lab1/
+    │   └── results.md
+    ├── lab2/
+    │   └── results.md
+    └── ...
 ```
 
 ## Create the directories
